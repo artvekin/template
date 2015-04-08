@@ -43,10 +43,11 @@ template <class T> void MySet<T> :: OutPut ()
 
 
 template <class T>  void MySet<T> :: add (const T& elem)
-{
-    T* e_set = new T[s_set + 1];
+{ 
+    s_set++;
+    T* e_set = new T[s_set];
     if (s_set != 0)
-        for (int i = 0 ; i < s_set ; i++)
+        for (int i = 0 ; i < s_set-1 ; i++)
         {
             e_set[i] = arr[i];
             if (arr[i] == elem)
@@ -54,9 +55,8 @@ template <class T>  void MySet<T> :: add (const T& elem)
         }
     
     delete[] arr;
-    e_set[s_set] = elem;
+    e_set[s_set-1] = elem;
     arr = e_set; 
-    s_set++;
 }
 
 
@@ -67,8 +67,8 @@ template <class T> void MySet<T> :: remove (const T& elem)
     if (i == s_set && arr[s_set] != elem)
         return;
         
-    for (int j = i ; j < s_set - 1 ; j++)
-        arr[j] = arr[j + 1];
+    for (int k = i ; k < s_set - 1 ; k++)
+        arr[k] = arr[k + 1];
         
     s_set--;
 }
@@ -90,16 +90,16 @@ template <class T> int MySet<T> :: size () const
 }
 
 
-template <class T> MySet<T>& MySet<T> :: operator= (const MySet<T>& a)
+template <class T> MySet<T>& MySet<T> :: operator= (const MySet<T>& pi)
 {
-    s_set = a.s_set;
+    s_set = pi.s_set;
     cap = s_set + 1;
     if (s_set != 0)
     {
         if (arr != 0) delete[] arr;
         arr = new T[cap];
-        for (int i = 0 ; i<s_set ; i++)
-            arr[i] = a.arr[i];
+        for (int k = 0 ; k < s_set ; k++)
+            arr[k] = pi.arr[k];
     }
     return *this;
 }
