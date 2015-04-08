@@ -55,7 +55,7 @@ template <class T>  void MySet<T> :: add (const T& elem)
     
     delete[] arr;
     e_set[s_set] = elem;
-    arr = e_set;
+    arr = e_set; 
     s_set++;
 }
 
@@ -69,10 +69,9 @@ template <class T> void MySet<T> :: remove (const T& elem)
         
     for (int j = i ; j < s_set - 1 ; j++)
         arr[j] = arr[j + 1];
+        
     s_set--;
-    
 }
-
 
 
 template <class T> bool MySet<T> :: contains (const T& elem) const
